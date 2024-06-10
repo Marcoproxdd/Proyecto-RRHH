@@ -1,4 +1,6 @@
 module.exports = {
   ExampleRoutes: require("./v1.example"),
-  DepartamentoRoute: require("./v1.departamento"),
+  DepartamentoRoutes: require("./v1.departamento"),
+  WorkScheduleRoutes: require("./v1.workSchedule"),
+  PermissionRoutes: require("./v1.permission"),
 };
