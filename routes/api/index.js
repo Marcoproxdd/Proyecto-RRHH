@@ -1,6 +1,13 @@
+const DepartamentoRoutes = require('./departamento.routes');
+const UsuarioRoutes = require('./usuario.routes');
+const PuestoRoutes = require('./puesto.routes');
+const RolRoutes = require('./rol.routes');
+const HorarioRoutes = require('./horario.routes'); // Asegúrate de agregar esto
+
 module.exports = {
-  ExampleRoutes: require("./v1.example"),
-  DepartamentoRoutes: require("./v1.departamento"),
-  WorkScheduleRoutes: require("./v1.workSchedule"),
-  PermissionRoutes: require("./v1.permission"),
+  DepartamentoRoutes,
+  UsuarioRoutes,
+  PuestoRoutes,
+  RolRoutes,
+  HorarioRoutes, // Asegúrate de agregar esto
 };

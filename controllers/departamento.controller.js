@@ -1,13 +1,20 @@
-const catchControllerAsync = require("../utils/catch-controller-async");
-const BaseController = require("./base.controller");
-let _exampleService = null;
-module.exports = class ExampleController extends BaseController {
-  constructor({ ExampleService }) {
-    super(ExampleService);
-    _exampleService = ExampleService;
+const { Departamento } = require('../models');
+
+exports.create = async (req, res) => {
+  try {
+    const { nombre, descripcion } = req.body;
+    const newDepartamento = await Departamento.create({ nombre, descripcion });
+    res.status(201).json(newDepartamento);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
-  hello = catchControllerAsync(async (req, res) => {
-    const result = await _exampleService.hello();
-    res.status(200).send(result);
-  })
+};
+
+exports.findAll = async (req, res) => {
+  try {
+    const departamentos = await Departamento.findAll();
+    res.status(200).json(departamentos);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };

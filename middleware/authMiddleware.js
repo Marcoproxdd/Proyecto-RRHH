@@ -1,24 +1,26 @@
-const jwt = require("jsonwebtoken");
-const asyncHandler = require("express-async-handler");
+const jwt = require('jsonwebtoken');
+const asyncHandler = require('express-async-handler');
+const User = require('../models/usuario');
 
+const protect = asyncHandler(async (req, res, next) => {
+  let token;
 
-
-const protect = ({ Example, config }) => asyncHandler(async (req, res, next) => {
-  let token = req.headers["x-api-key"];
-  if (token) {
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
     try {
-      const decoded = jwt.verify(token, config.JWT_SECRET);
-      req.example = await Example.findOne({ _id: decoded.id }).select("-password");
+      token = req.headers.authorization.split(' ')[1];
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      req.user = await User.findByPk(decoded.id);
       next();
     } catch (error) {
-      console.log(error);
       res.status(401);
-      throw new Error("No autorizado");
+      throw new Error('Not authorized, token failed');
     }
   }
+
   if (!token) {
     res.status(401);
-    throw new Error("No autorizado, no se envió el token");
+    throw new Error('Not authorized, no token');
   }
 });
+
 module.exports = { protect };
