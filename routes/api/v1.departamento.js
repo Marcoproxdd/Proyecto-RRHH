@@ -1,11 +1,8 @@
-const { Router } = require('express');
-const container = require('../../config/container');
-const DepartamentoController = container.resolve('DepartamentoController');
+const express = require('express');
+const router = express.Router();
+const departmentController = require('../../controllers/departmentController');
 
-const router = Router();
-
-router.post('/', (req, res, next) => {
-  DepartamentoController.createDepartment(req, res, next);
-});
+router.post('/create', departmentController.createDepartment);
+router.post('/assign', departmentController.assignUserToDepartment);
 
 module.exports = router;

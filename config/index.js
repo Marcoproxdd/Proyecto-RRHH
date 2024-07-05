@@ -1,8 +1,8 @@
-if (process.env.NODE_ENV !== "production") {
-    require("dotenv").config();
-}
-
-module.exports = {
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+  }
+  
+  module.exports = {
     PORT: process.env.PORT,
     DB_BACKOFIICE_URL: process.env.DB_BACKOFIICE_URL,
     EMAIL: process.env.EMAIL,
@@ -16,19 +16,19 @@ module.exports = {
     TIME_TO_EXPIRE: process.env.TIME_TO_EXPIRE,
     DB_SPORT_URL: process.env.DB_SPORT_URL,
     development: {
-        username: process.env.DBUSER,
-        password: process.env.DBPASS,
-        database: process.env.DBNAME,
-        host: process.env.DBHOST,
-        dialect: "mysql",
-        logging: false,
+      username: process.env.DBUSER,
+      password: process.env.DBPASS,
+      database: process.env.DBNAME,
+      host: process.env.DBHOST,
+      dialect: 'mysql',
+      logging: false,
     },
-    production:{
-        username: process.env.DBUSER,
-        password: process.env.DBPASS,
-        database: process.env.DBNAME,
-        host: process.env.DBHOST,
-        dialect: "mysql",
-    }
-    // SWAGGER_PATH: __dirname.concat("/swagger/swaggerDEV.json"),
-};
+    production: {
+      username: process.env.DBUSER,
+      password: process.env.DBPASS,
+      database: process.env.DBNAME,
+      host: process.env.DBHOST,
+      dialect: 'mysql',
+    },
+  };
+  
