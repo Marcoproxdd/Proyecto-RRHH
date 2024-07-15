@@ -3,7 +3,10 @@ const departamentoController = require('../../controllers/departamento.controlle
 
 module.exports = () => {
   const router = express.Router();
-  router.post('/', departamentoController.create);
-  router.get('/', departamentoController.findAll);
+  router.post('/', departamentoController.createDepartamento);
+  router.get('/', departamentoController.getDepartamentos);
+  router.get('/:id', departamentoController.getDepartamentoById);
+  router.put('/:id', departamentoController.updateDepartamento);
+  router.delete('/:id', departamentoController.deleteDepartamento);
   return router;
 };

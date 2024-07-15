@@ -1,25 +1,37 @@
-// models/horario.js
+// models/permiso.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/sequelize');
 const Usuario = require('./usuario');
 
-const Horario = sequelize.define('Horario', {
+const Permiso = sequelize.define('Permiso', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
-  dia: {
+  tipoPermiso: {
+    type: DataTypes.STRING(45),
+    allowNull: false
+  },
+  fechaSolicitud: {
     type: DataTypes.DATE,
     allowNull: false
   },
-  horaEntrada: {
+  fechaInicio: {
     type: DataTypes.DATE,
     allowNull: false
   },
-  horaSalida: {
+  fechaFin: {
     type: DataTypes.DATE,
     allowNull: false
+  },
+  estado: {
+    type: DataTypes.STRING(45),
+    allowNull: false
+  },
+  comentario: {
+    type: DataTypes.STRING(100),
+    allowNull: true
   },
   idUsuario: {
     type: DataTypes.INTEGER,
@@ -29,10 +41,10 @@ const Horario = sequelize.define('Horario', {
     }
   }
 }, {
-  tableName: 'horario',
+  tableName: 'permiso',
   timestamps: false
 });
 
-Horario.belongsTo(Usuario, { foreignKey: 'idUsuario' });
+Permiso.belongsTo(Usuario, { foreignKey: 'idUsuario' });
 
-module.exports = Horario;
+module.exports = Permiso;

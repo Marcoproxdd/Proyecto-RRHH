@@ -1,7 +1,7 @@
 // controllers/rol.controller.js
-const Rol = require('../models/rol');
+const Rol = require('../models').Rol;
 
-exports.create = async (req, res) => {
+exports.createRol = async (req, res) => {
   try {
     const rol = await Rol.create(req.body);
     res.status(201).json(rol);
@@ -10,7 +10,7 @@ exports.create = async (req, res) => {
   }
 };
 
-exports.findAll = async (req, res) => {
+exports.getRoles = async (req, res) => {
   try {
     const roles = await Rol.findAll();
     res.status(200).json(roles);
@@ -19,29 +19,44 @@ exports.findAll = async (req, res) => {
   }
 };
 
-exports.update = async (req, res) => {
+exports.getRolById = async (req, res) => {
   try {
-    const { id } = req.params;
-    const [updated] = await Rol.update(req.body, { where: { id: id } });
-    if (updated) {
-      const updatedRol = await Rol.findOne({ where: { id: id } });
-      res.status(200).json(updatedRol);
+    const rol = await Rol.findByPk(req.params.id);
+    if (rol) {
+      res.status(200).json(rol);
     } else {
-      res.status(404).json({ message: 'Rol not found' });
+      res.status(404).json({ error: 'Rol no encontrado' });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-exports.delete = async (req, res) => {
+exports.updateRol = async (req, res) => {
   try {
-    const { id } = req.params;
-    const deleted = await Rol.destroy({ where: { id: id } });
-    if (deleted) {
-      res.status(204).json();
+    const [updated] = await Rol.update(req.body, {
+      where: { id: req.params.id }
+    });
+    if (updated) {
+      const updatedRol = await Rol.findByPk(req.params.id);
+      res.status(200).json(updatedRol);
     } else {
-      res.status(404).json({ message: 'Rol not found' });
+      res.status(404).json({ error: 'Rol no encontrado' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+exports.deleteRol = async (req, res) => {
+  try {
+    const deleted = await Rol.destroy({
+      where: { id: req.params.id }
+    });
+    if (deleted) {
+      res.status(204).send();
+    } else {
+      res.status(404).json({ error: 'Rol no encontrado' });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
