@@ -8,5 +8,6 @@ module.exports = () => {
   router.get('/:id', puestoController.getPuestoById);
   router.put('/:id', puestoController.updatePuesto);
   router.delete('/:id', puestoController.deletePuesto);
+
   return router;
 };

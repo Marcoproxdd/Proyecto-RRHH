@@ -1,64 +1,58 @@
-// controllers/rol.controller.js
-const Rol = require('../models').Rol;
+const { RolService } = require('../services');
 
-exports.createRol = async (req, res) => {
+exports.createRol = async (req, res, next) => {
   try {
-    const rol = await Rol.create(req.body);
+    const rol = await RolService.create(req.body);
     res.status(201).json(rol);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    next(error);
   }
 };
 
-exports.getRoles = async (req, res) => {
+exports.getRoles = async (req, res, next) => {
   try {
-    const roles = await Rol.findAll();
+    const roles = await RolService.findAll();
     res.status(200).json(roles);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    next(error);
   }
 };
 
-exports.getRolById = async (req, res) => {
+exports.getRolById = async (req, res, next) => {
   try {
-    const rol = await Rol.findByPk(req.params.id);
+    const rol = await RolService.findById(req.params.id);
     if (rol) {
       res.status(200).json(rol);
     } else {
       res.status(404).json({ error: 'Rol no encontrado' });
     }
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    next(error);
   }
 };
 
-exports.updateRol = async (req, res) => {
+exports.updateRol = async (req, res, next) => {
   try {
-    const [updated] = await Rol.update(req.body, {
-      where: { id: req.params.id }
-    });
-    if (updated) {
-      const updatedRol = await Rol.findByPk(req.params.id);
-      res.status(200).json(updatedRol);
-    } else {
-      res.status(404).json({ error: 'Rol no encontrado' });
-    }
+    const updatedRol = await RolService.update(req.params.id, req.body);
+    res.status(200).json(updatedRol);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    if (error.message === 'Rol no encontrado') {
+      res.status(404).json({ error: error.message });
+    } else {
+      next(error);
+    }
   }
 };
 
-exports.deleteRol = async (req, res) => {
+exports.deleteRol = async (req, res, next) => {
   try {
-    const deleted = await Rol.destroy({
-      where: { id: req.params.id }
-    });
-    if (deleted) {
-      res.status(204).send();
-    } else {
-      res.status(404).json({ error: 'Rol no encontrado' });
-    }
+    await RolService.delete(req.params.id);
+    res.status(204).send();
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    if (error.message === 'Rol no encontrado') {
+      res.status(404).json({ error: error.message });
+    } else {
+      next(error);
+    }
   }
 };

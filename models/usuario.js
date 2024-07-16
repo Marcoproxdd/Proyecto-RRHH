@@ -3,6 +3,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/sequelize');
 const Rol = require('./rol');
 const Puesto = require('./puesto');
+const Departamento = require('./departamento');
 
 const Usuario = sequelize.define('Usuario', {
   id: {
@@ -30,6 +31,10 @@ const Usuario = sequelize.define('Usuario', {
     type: DataTypes.STRING(45),
     allowNull: true
   },
+  cumpleanios: {
+    type: DataTypes.DATE,
+    allowNull: true
+  },
   idPuesto: {
     type: DataTypes.INTEGER,
     references: {
@@ -47,9 +52,13 @@ const Usuario = sequelize.define('Usuario', {
   idDepartamento: {
     type: DataTypes.INTEGER,
     references: {
-      model: 'Departamento',
+      model: Departamento,
       key: 'id'
     }
+  },
+  fechaIngreso: {
+    type: DataTypes.DATE,
+    allowNull: false
   }
 }, {
   tableName: 'usuario',
@@ -58,5 +67,6 @@ const Usuario = sequelize.define('Usuario', {
 
 Usuario.belongsTo(Rol, { foreignKey: 'idRol' });
 Usuario.belongsTo(Puesto, { foreignKey: 'idPuesto' });
+Usuario.belongsTo(Departamento, { foreignKey: 'idDepartamento' });
 
 module.exports = Usuario;

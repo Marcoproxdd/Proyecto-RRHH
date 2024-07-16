@@ -8,5 +8,6 @@ module.exports = () => {
   router.get('/:id', rolController.getRolById);
   router.put('/:id', rolController.updateRol);
   router.delete('/:id', rolController.deleteRol);
+
   return router;
 };

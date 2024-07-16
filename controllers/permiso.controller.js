@@ -1,64 +1,39 @@
-// controllers/permiso.controller.js
-const Permiso = require('../models').Permiso;
+const permisoService = require('../services/permiso.service');
 
-exports.createPermiso = async (req, res) => {
+exports.create = async (req, res, next) => {
   try {
-    const permiso = await Permiso.create(req.body);
+    const permiso = await permisoService.create(req.body);
     res.status(201).json(permiso);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    next(error);
   }
 };
 
-exports.getPermisos = async (req, res) => {
+exports.findAll = async (req, res, next) => {
   try {
-    const permisos = await Permiso.findAll();
+    const permisos = await permisoService.findAll();
     res.status(200).json(permisos);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    next(error);
   }
 };
 
-exports.getPermisoById = async (req, res) => {
+exports.findByUsuario = async (req, res, next) => {
   try {
-    const permiso = await Permiso.findByPk(req.params.id);
-    if (permiso) {
-      res.status(200).json(permiso);
-    } else {
-      res.status(404).json({ error: 'Permiso no encontrado' });
-    }
+    const { usuarioId } = req.params;
+    const permisos = await permisoService.findByUsuario(usuarioId);
+    res.status(200).json(permisos);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    next(error);
   }
 };
 
-exports.updatePermiso = async (req, res) => {
+exports.approvePermiso = async (req, res, next) => {
   try {
-    const [updated] = await Permiso.update(req.body, {
-      where: { id: req.params.id }
-    });
-    if (updated) {
-      const updatedPermiso = await Permiso.findByPk(req.params.id);
-      res.status(200).json(updatedPermiso);
-    } else {
-      res.status(404).json({ error: 'Permiso no encontrado' });
-    }
+    const { permisoId } = req.params;
+    const permiso = await permisoService.approvePermiso(permisoId);
+    res.status(200).json(permiso);
   } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
-exports.deletePermiso = async (req, res) => {
-  try {
-    const deleted = await Permiso.destroy({
-      where: { id: req.params.id }
-    });
-    if (deleted) {
-      res.status(204).send();
-    } else {
-      res.status(404).json({ error: 'Permiso no encontrado' });
-    }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+    next(error);
   }
 };

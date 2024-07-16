@@ -3,10 +3,10 @@ const permisoController = require('../../controllers/permiso.controller');
 
 module.exports = () => {
   const router = express.Router();
-  router.post('/', permisoController.createPermiso);
-  router.get('/', permisoController.getPermisos);
-  router.get('/:id', permisoController.getPermisoById);
-  router.put('/:id', permisoController.updatePermiso);
-  router.delete('/:id', permisoController.deletePermiso);
+  router.post('/', permisoController.create);
+  router.get('/', permisoController.findAll);
+  router.get('/usuario/:usuarioId', permisoController.findByUsuario);
+  router.post('/aprobar/:permisoId', permisoController.approvePermiso); // Asegúrate de que la ruta POST para aprobar esté bien configurada
+  
   return router;
 };

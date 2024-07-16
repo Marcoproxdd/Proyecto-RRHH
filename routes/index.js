@@ -9,7 +9,9 @@ module.exports = function ({
   PuestoRoutes,
   RolRoutes,
   HorarioRoutes,
-  PermisoRoutes // Asegúrate de que esto esté incluido
+  PermisoRoutes,
+  CalendarioRoutes,
+  ReporteRoutes // Asegúrate de que esto esté incluido
 }) {
   const router = express.Router();
   const apiRouter = express.Router();
@@ -20,7 +22,9 @@ module.exports = function ({
   apiRouter.use('/puesto', PuestoRoutes);
   apiRouter.use('/rol', RolRoutes);
   apiRouter.use('/horario', HorarioRoutes);
-  apiRouter.use('/permiso', PermisoRoutes); // Asegúrate de que esto esté incluido
+  apiRouter.use('/permiso', PermisoRoutes);
+  apiRouter.use('/calendario', CalendarioRoutes);
+  apiRouter.use('/reporte', ReporteRoutes); // Asegúrate de que esto esté incluido
 
   router.use('/v1/api', apiRouter);
   router.use(ErrorMiddleware);

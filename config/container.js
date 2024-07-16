@@ -18,6 +18,8 @@ const {
   RolRoutes,
   HorarioRoutes,
   PermisoRoutes,
+  CalendarioRoutes,
+  ReporteRoutes,
 } = require('../routes/api/index');
 // Models
 const {
@@ -26,7 +28,7 @@ const {
   Rol,
   Usuario,
   Horario,
-  Permiso
+  Permiso,
 } = require('../models');
 const { protect } = require('../middleware/authMiddleware');
 const AuthUtils = require('../utils/auth');
@@ -52,6 +54,9 @@ container
     RolRoutes: asFunction(RolRoutes).singleton(),
     HorarioRoutes: asFunction(HorarioRoutes).singleton(),
     PermisoRoutes: asFunction(PermisoRoutes).singleton(),
+    CalendarioRoutes: asFunction(CalendarioRoutes).singleton(),
+    ReporteRoutes: asFunction(ReporteRoutes).singleton(),
+    
   })
   .register({
     // Configuración de modelos

@@ -8,5 +8,6 @@ module.exports = () => {
   router.get('/:id', usuarioController.getUsuarioById);
   router.put('/:id', usuarioController.updateUsuario);
   router.delete('/:id', usuarioController.deleteUsuario);
+
   return router;
 };

@@ -4,6 +4,8 @@ const PuestoRoutes = require('./puesto.routes');
 const RolRoutes = require('./rol.routes');
 const HorarioRoutes = require('./horario.routes');
 const PermisoRoutes = require('./permiso.routes');
+const CalendarioRoutes = require('./calendario.routes');
+const ReporteRoutes = require('./reporte.routes');
 
 module.exports = {
   DepartamentoRoutes,
@@ -11,5 +13,7 @@ module.exports = {
   PuestoRoutes,
   RolRoutes,
   HorarioRoutes, 
-  PermisoRoutes
+  PermisoRoutes,
+  CalendarioRoutes,
+  ReporteRoutes,
 };

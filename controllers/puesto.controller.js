@@ -1,9 +1,8 @@
-// controllers/puesto.controller.js
-const Puesto = require('../models').Puesto;
+const { PuestoService } = require('../services');
 
 exports.createPuesto = async (req, res) => {
   try {
-    const puesto = await Puesto.create(req.body);
+    const puesto = await PuestoService.create(req.body);
     res.status(201).json(puesto);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -12,7 +11,7 @@ exports.createPuesto = async (req, res) => {
 
 exports.getPuestos = async (req, res) => {
   try {
-    const puestos = await Puesto.findAll();
+    const puestos = await PuestoService.findAll();
     res.status(200).json(puestos);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -21,7 +20,7 @@ exports.getPuestos = async (req, res) => {
 
 exports.getPuestoById = async (req, res) => {
   try {
-    const puesto = await Puesto.findByPk(req.params.id);
+    const puesto = await PuestoService.findById(req.params.id);
     if (puesto) {
       res.status(200).json(puesto);
     } else {
@@ -34,11 +33,8 @@ exports.getPuestoById = async (req, res) => {
 
 exports.updatePuesto = async (req, res) => {
   try {
-    const [updated] = await Puesto.update(req.body, {
-      where: { id: req.params.id }
-    });
-    if (updated) {
-      const updatedPuesto = await Puesto.findByPk(req.params.id);
+    const updatedPuesto = await PuestoService.update(req.params.id, req.body);
+    if (updatedPuesto) {
       res.status(200).json(updatedPuesto);
     } else {
       res.status(404).json({ error: 'Puesto no encontrado' });
@@ -50,9 +46,7 @@ exports.updatePuesto = async (req, res) => {
 
 exports.deletePuesto = async (req, res) => {
   try {
-    const deleted = await Puesto.destroy({
-      where: { id: req.params.id }
-    });
+    const deleted = await PuestoService.delete(req.params.id);
     if (deleted) {
       res.status(204).send();
     } else {
