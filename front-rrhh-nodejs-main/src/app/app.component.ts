@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterLink, RouterModule } from '@angular/router'; 
 import { PermisoListComponent } from './permiso-list/permiso-list.component';
+import { UsuarioComponent } from './usuario/usuario.component';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,8 @@ import { PermisoListComponent } from './permiso-list/permiso-list.component';
     RouterLink,
     PermisoComponent,
     DashboardComponent,
-    PermisoListComponent
+    PermisoListComponent,
+    UsuarioComponent
 ]
 })
 export class AppComponent {
