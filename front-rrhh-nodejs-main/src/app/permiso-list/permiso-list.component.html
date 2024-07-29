@@ -1,0 +1,27 @@
+<div class="permiso-list">
+  <h2>Lista de Permisos</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tipo de Permiso</th>
+        <th>Fecha de Solicitud</th>
+        <th>Fecha de Inicio</th>
+        <th>Fecha de Fin</th>
+        <th>Estado</th>
+        <th>ID de Usuario</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let permiso of permisos">
+        <td>{{ permiso.id }}</td>
+        <td>{{ permiso.tipoPermiso }}</td>
+        <td>{{ permiso.fechaSolicitud }}</td>
+        <td>{{ permiso.fechaInicio }}</td>
+        <td>{{ permiso.fechaFin }}</td>
+        <td>{{ permiso.estado }}</td>
+        <td>{{ permiso.idUsuario }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

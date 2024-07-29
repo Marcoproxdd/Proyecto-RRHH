@@ -1,0 +1,37 @@
+.main-container {
+  display: flex;
+  height: 100vh; /* Hace que el contenedor principal ocupe toda la altura de la pantalla */
+}
+
+nav {
+  background-color: #343a40;
+  color: white;
+  width: 215px; /* Fija el ancho del sidebar */
+  padding: 1rem;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 1rem 0;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+main {
+  flex-grow: 1;
+}
+
+router-outlet {
+  width: 100%;
+}
+
+app-dashboard, app-permiso, app-permiso-list {
+  width: 100%;
+}

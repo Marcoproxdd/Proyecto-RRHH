@@ -1,0 +1,63 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif
+}
+.welcome-card {
+  background: #f5f5f5;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+}
+.stat-item {
+  flex: 1;
+  min-width: 150px;
+  background: #fff;
+  margin: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border-radius: 12px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.stat-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.stat-item i {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+.stat-item h3 {
+  font-size: 28px;
+  margin: 0;
+  color: #333;
+  font-weight: 700;
+}
+.stat-item p {
+  font-size: 18px;
+  color: #888;
+  margin: 0;
+  font-weight: 500;
+}
+.stat-item.purchase i {
+  color: #ff4757;
+}
+.stat-item.sales-return i {
+  color: #ffa502;
+}
+.stat-item.orders i {
+  color: #1e90ff;
+}
+.stat-item.sales i {
+  color: #2ed573;
+}
+.stat-item.profit i {
+  color: #3742fa;
+}
