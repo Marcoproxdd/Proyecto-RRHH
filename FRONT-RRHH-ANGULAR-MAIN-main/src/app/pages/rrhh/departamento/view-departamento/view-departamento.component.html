@@ -1,0 +1,25 @@
+<div class="container">
+    <h2>Lista de Departamentos</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let departamento of departamentos">
+          <td>{{ departamento.id }}</td>
+          <td>{{ departamento.nombre }}</td>
+          <td>{{ departamento.descripcion }}</td>
+          <td>
+            <button (click)="onEdit(departamento.id)" class="btn btn-primary me-2">Editar</button>
+           
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

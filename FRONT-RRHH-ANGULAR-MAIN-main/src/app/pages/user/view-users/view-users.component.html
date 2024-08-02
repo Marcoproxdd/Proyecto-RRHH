@@ -1,0 +1,36 @@
+<div class="container">
+  <h2>Lista de Usuarios</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombres</th>
+        <th>Identificación</th>
+        <th>Usuario</th>
+        <th>Cumpleaños</th>
+        <th>Puesto</th>
+        <th>Rol</th>
+        <th>Departamento</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios">
+        <td>{{ usuario.id }}</td>
+        <td>{{ usuario.nombres }}</td>
+        <td>{{ usuario.identificacion }}</td>
+        <td>{{ usuario.usuario }}</td>
+        <td>{{ usuario.cumpleanios }}</td>
+        <td>{{ getPuestoName(usuario.idPuesto) }}</td>
+        <td>{{ getRolName(usuario.idRol) }}</td>
+        <td>{{ getDepartamentoName(usuario.idDepartamento) }}</td>
+        <td>
+          <button (click)="editarUsuario(usuario.id)" class="btn btn-primary me-2">Editar</button>
+          <button *ngIf="usuario.estado === 'Activo'" (click)="desactivarUsuario(usuario.id)" class="btn btn-warning me-2">Desactivar</button>
+          <button *ngIf="usuario.estado === 'Inactivo'" (click)="activarUsuario(usuario.id)" class="btn btn-info me-2">Activar</button>
+         
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

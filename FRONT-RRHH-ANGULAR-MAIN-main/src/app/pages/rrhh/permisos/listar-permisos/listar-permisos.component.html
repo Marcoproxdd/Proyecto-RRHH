@@ -1,0 +1,33 @@
+<div class="container">
+  <h2>Lista de Permisos</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Usuario</th>
+        <th>Tipo de Permiso</th>
+        <th>Fecha de Solicitud</th>
+        <th>Fecha de Inicio</th>
+        <th>Fecha de Fin</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let permiso of permisos">
+        <td>{{ permiso.id }}</td>
+        <td>{{ getUsuarioName(permiso.idUsuario) }}</td>
+        <td>{{ permiso.tipoPermiso }}</td>
+        <td>{{ permiso.fechaSolicitud }}</td>
+        <td>{{ permiso.fechaInicio }}</td>
+        <td>{{ permiso.fechaFin }}</td>
+        <td>{{ permiso.estado }}</td>
+        <td>
+          <button (click)="aprobarPermiso(permiso.id)" class="btn btn-success me-2">Aprobar</button>
+          <button *ngIf="permiso.estado === 'Activo'" (click)="desactivarPermiso(permiso.id)" class="btn btn-warning me-2">Desactivar</button>
+          <button *ngIf="permiso.estado === 'Inactivo'" (click)="activarPermiso(permiso.id)" class="btn btn-info me-2">Activar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

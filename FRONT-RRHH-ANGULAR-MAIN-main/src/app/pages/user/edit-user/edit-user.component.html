@@ -1,0 +1,49 @@
+<!-- src/app/components/edit-user/edit-user.component.html -->
+<div class="container">
+  <h2>Editar Usuario</h2>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="nombres">Nombres</label>
+      <input id="nombres" formControlName="nombres" type="text" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="identificacion">Identificación</label>
+      <input id="identificacion" formControlName="identificacion" type="text" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="usuario">Usuario</label>
+      <input id="usuario" formControlName="usuario" type="text" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="contraseña">Contraseña</label>
+      <input id="contraseña" formControlName="contraseña" type="password" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="cumpleanios">Cumpleaños</label>
+      <input id="cumpleanios" formControlName="cumpleanios" type="date" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="idPuesto">Puesto</label>
+      <select id="idPuesto" formControlName="idPuesto" class="form-control">
+        <option *ngFor="let puesto of puestos" [value]="puesto.id">{{ puesto.nombre }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="idRol">Rol</label>
+      <select id="idRol" formControlName="idRol" class="form-control">
+        <option *ngFor="let rol of roles" [value]="rol.id">{{ rol.rol }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="idDepartamento">Departamento</label>
+      <select id="idDepartamento" formControlName="idDepartamento" class="form-control">
+        <option *ngFor="let departamento of departamentos" [value]="departamento.id">{{ departamento.nombre }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="fechaIngreso">Fecha de Ingreso</label>
+      <input id="fechaIngreso" formControlName="fechaIngreso" type="date" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+  </form>
+</div>

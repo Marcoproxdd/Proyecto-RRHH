@@ -1,0 +1,34 @@
+<div class="container">
+  <h2>Editar Horario</h2>
+  <form [formGroup]="horarioForm" (ngSubmit)="actualizarHorario()">
+    <div class="form-group">
+      <label for="dia">Día</label>
+      <input id="dia" formControlName="dia" type="date" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="horaEntrada">Hora de Entrada</label>
+      <input id="horaEntrada" formControlName="horaEntrada" type="time" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="horaSalida">Hora de Salida</label>
+      <input id="horaSalida" formControlName="horaSalida" type="time" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="horasExtra">Horas Extra</label>
+      <input id="horasExtra" formControlName="horasExtra" type="number" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="compensaciones">Compensaciones</label>
+      <input id="compensaciones" formControlName="compensaciones" type="number" step="0.01" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="idUsuario">ID Usuario</label>
+      <input id="idUsuario" formControlName="idUsuario" type="number" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="idDepartamento">ID Departamento</label>
+      <input id="idDepartamento" formControlName="idDepartamento" type="number" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+  </form>
+</div>

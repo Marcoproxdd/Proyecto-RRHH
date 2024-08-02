@@ -1,0 +1,17 @@
+<div class="notification-box" (click)="toggleNotificationMobile()">
+  <svg>
+    <use href="assets/svg/icon-sprite.svg#notification"></use>
+  </svg>
+  <span class="badge rounded-pill badge-secondary">{{ birthdayUsers.length }}</span>
+</div>
+<div class="onhover-show-div notification-dropdown" [ngClass]="{'show': showNotifications}">
+  <h6 class="f-18 mb-0 dropdown-title">Notificaciones</h6>
+  <ul>
+    <li class="b-l-primary border-4" *ngFor="let user of birthdayUsers">
+      <p>Hoy es el cumpleaños de {{ user.nombres }}</p>
+    </li>
+    <li *ngIf="birthdayUsers.length === 0">
+      <p>No hay cumpleaños hoy</p>
+    </li>
+  </ul>
+</div>

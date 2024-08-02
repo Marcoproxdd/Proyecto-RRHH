@@ -1,0 +1,29 @@
+<div class="container">
+    <h2>Lista de Puestos</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Salario</th>
+          <th>Departamento</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let puesto of puestos">
+          <td>{{ puesto.id }}</td>
+          <td>{{ puesto.nombre }}</td>
+          <td>{{ puesto.descripcion }}</td>
+          <td>{{ puesto.salario }}</td>
+          <td>{{ puesto.nombreDepartamento }}</td>
+          <td>
+            <a [routerLink]="['/rrhh/puesto/editar-puesto', puesto.id]" class="btn btn-primary me-2">Editar</a>
+            
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

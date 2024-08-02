@@ -1,0 +1,24 @@
+<div class="container">
+  <h2>Lista de Roles</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Rol</th>
+        <th>Descripción</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let rol of roles">
+        <td>{{ rol.id }}</td>
+        <td>{{ rol.rol }}</td>
+        <td>{{ rol.descripcion }}</td>
+        <td>
+          <a [routerLink]="['/rrhh/editar-rol', rol.id]" class="btn btn-primary me-2">Editar</a>
+         
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
